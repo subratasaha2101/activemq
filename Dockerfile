@@ -1,7 +1,6 @@
-FROM ubuntu
+FROM ubuntu:latest
 
 RUN \
-  apt-get update && \
   apt-get install software-properties-common && \
   add-apt-repository ppa:openjdk-r/ppa && \
   apt-get install oracle-java7-installer && \
