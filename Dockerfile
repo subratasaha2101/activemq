@@ -1,9 +1,10 @@
-FROM ubuntu:latest
+FROM ubuntu
 
 RUN \
+  apt-get update && \
   apt-get install software-properties-common && \
   add-apt-repository ppa:openjdk-r/ppa && \
-  apt-get install oracle-java7-installer && \
+  apt-get install openjdk-7-jre && \
   rm -rf /var/lib/apt/lists/*
   
 WORKDIR /data
