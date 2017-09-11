@@ -1,7 +1,8 @@
 FROM ubuntu
 
 RUN \
-  echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  apt-get update && \
+  apt-get install software-properties-common && \
   add-apt-repository ppa:webupd8team/java && \
   apt-get update && \
   apt-get install oracle-java7-installer && \
