@@ -2,6 +2,7 @@ FROM ubuntu
 
 RUN \
   apt-get update && \
+  apt-get install software-properties-common && \
   apt-get install -y openjdk-7-jdk && \
   rm -rf /var/lib/apt/lists/*
   
