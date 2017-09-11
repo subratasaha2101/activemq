@@ -2,9 +2,7 @@ FROM ubuntu
 
 RUN \
   apt-get update && \
-  apt-get install software-properties-common && \
-  add-apt-repository ppa:openjdk-r/ppa && \
-  apt-get install openjdk-7-jre && \
+  apt-get install -y openjdk-7-jdk && \
   rm -rf /var/lib/apt/lists/*
   
 WORKDIR /data
