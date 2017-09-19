@@ -1,4 +1,4 @@
-FROM oracle-java8
+FROM hellboy499/test-image
 
 MAINTAINER SEALAB
 
