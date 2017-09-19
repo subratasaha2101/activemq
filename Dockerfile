@@ -1,18 +1,18 @@
-FROM ubuntu
+FROM oracle-java8
 
-RUN \
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-  apt-get update && \
-  apt-get install -y build-essential && \
-  apt-get install -y software-properties-common && \
-  add-apt-repository -y ppa:webupd8team/java && \
-  apt-get update && \
-  apt-get install -y oracle-java8-installer && \
-  rm -rf /var/lib/apt/lists/* && \
-  rm -rf /var/cache/oracle-jdk8-installer
-  
-WORKDIR /data
+MAINTAINER SEALAB
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV DOWNLOAD http://www.h2database.com/h2-2016-10-31.zip
+ENV DATA_DIR /opt/software/h2-data
 
-CMD ["bash"]
+RUN curl ${DOWNLOAD} -o h2.zip \
+    && unzip h2.zip -d /opt/software/ \
+    && rm h2.zip \
+                && mkdir -p ${DATA_DIR}
+
+EXPOSE 8082 9092
+
+CMD java -cp /opt/software/h2/bin/h2*.jar org.h2.tools.Server \
+               -web -webAllowOthers -webPort 8082 \
+               -tcp -tcpAllowOthers -tcpPort 9092 \
+               -baseDir ${DATA_DIR}
