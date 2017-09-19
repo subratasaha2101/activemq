@@ -1,4 +1,4 @@
-FROM hellboy499/test-image
+FROM java:8
 
 MAINTAINER SEALAB
 
